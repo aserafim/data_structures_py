@@ -76,3 +76,26 @@ class CreditCard:
         """Process customer payment that reduces balance"""
 
         self._balance -= amount
+
+if __name__ == '__main__':
+    wallet = []
+    wallet.append(CreditCard('John Bowman', 'California Savings', '5391 0375 9387 5309', 2500))
+    wallet.append(CreditCard('Peter Sawyer', 'California Savings', '5391 0375 9355 0048', 3700))
+    wallet.append(CreditCard('Mary Bowman', 'California Savings', '5391 7589 4577 5309', 1000))
+
+    for value in range(1,17):
+        wallet[0].charge(value)
+        wallet[1].charge(value * 2)
+        wallet[2].charge(value * 3)
+
+    for customer in range(3):
+        print('Customer: ', wallet[customer].get_customer())
+        print('Bank: ', wallet[customer].get_bank())
+        print('Account: ', wallet[customer].get_account())
+        print('Limit: ', wallet[customer].get_limit())
+        print('Balance: ', wallet[customer].get_ballance())
+
+        while wallet[customer].get_balance() > 100:
+            wallet[customer].make_payment(100)
+            print('New ballance: ', wallet[customer].get_ballance())
+            print()
